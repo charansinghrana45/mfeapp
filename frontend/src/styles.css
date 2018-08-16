@@ -5,7 +5,11 @@
 	box-sizing: border-box;
 }
 
-.content {
+.body{
+	background-color: hsl(0, 0%, 95%);
+}
+
+.main-content{
 	min-height: 100vh;
 }
 
@@ -34,4 +38,12 @@
 .footer-bottom p {
 	line-height: 50px;
 	opacity: 0.8;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: #fff !important;
+}
+
+.navbar-light .navbar-nav .active{
+  color: #000 !important;
 }

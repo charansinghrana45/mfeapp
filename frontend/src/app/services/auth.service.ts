@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment'
+
+import { TokenService } from './token.service';
+import { Observable } from 'rxjs';
+
 
 
 @Injectable({
@@ -8,31 +14,31 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  private loggedInStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loggedInStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.token.isLoggedIn());
 
   authStatus = this.loggedInStatus.asObservable();
+
+  private loggedInUserData: BehaviorSubject<string> = new BehaviorSubject<string>(this.token.getUserData());
+  authUserData = this.loggedInUserData.asObservable();
  
-  constructor() { }
+  constructor(private http: HttpClient, private token: TokenService) { }
 
    changeAuthStaus(value: boolean) {
 
    	this.loggedInStatus.next(value);
    }
 
+   changeAuthUserData(value: string) {
+
+     this.loggedInUserData.next(value);
+   }
+
 
    login(data) {
 
-   	let email = data.email;
-   	let password = data.password;
+    let apiBaseUrl = environment.apiBaseUrl;
 
-   	if(email == 'admin@gmail.com' && password == 'admin') {
-   		return true;
-   	} 
-   	else {
-   		return false;
-   	}
-
+   	return this.http.post(apiBaseUrl+'/auth/login', data);
    }
-
 
 }

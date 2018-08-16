@@ -18,7 +18,6 @@ export class AfterLoginService {
 
   	 this.auth.authStatus.subscribe(value => this.loggedIn = value);
   	 
-  	 console.log(this.loggedIn);
      if (this.loggedIn) { 
      	
      	return this.loggedIn; 

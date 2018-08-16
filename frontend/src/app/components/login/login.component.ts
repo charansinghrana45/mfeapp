@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -12,24 +13,32 @@ export class LoginComponent implements OnInit {
 
   form: object = {};
   errors: object= {};
-
-  constructor(private auth: AuthService, private router: Router) { }
+  
+  constructor(private auth: AuthService, private router: Router, private token: TokenService) { }
 
   ngOnInit() {
   }
 
   doLogin() {
 
-  	let logingInfo = this.auth.login(this.form);
+  	this.auth.login(this.form).subscribe(response => this.handleResponse(response), 
+                                        (error) => this.handleError(error));
+  }
 
-  	if(logingInfo === true) {
-  		this.auth.changeAuthStaus(true);
-  		this.router.navigateByUrl('/home');
-  	}
-  	else {
-  		this.errors = {credentials: "Oops! Email or Password is incorrect"};
-  	}
+  handleResponse(response) {
+    this.token.handleToken(response.token);
 
+    this.token.handleUserData(response.data);
+
+    this.auth.changeAuthUserData(this.token.getUserData());
+
+    this.auth.changeAuthStaus(this.token.isLoggedIn());
+
+    this.router.navigateByUrl('/home');
+  }
+
+  handleError(error) {
+    this.errors = {credentials: error.error.error}
   }
 
 }

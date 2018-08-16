@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }    from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AuthService } from './services/auth.service';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
+import { TokenService } from './services/token.service';
+import { ArtistdataService } from './services/artistdata.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,6 +24,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
+import { ArtistTracksComponent } from './components/artist-tracks/artist-tracks.component';
+import { ArtistAlbumsComponent } from './components/artist-albums/artist-albums.component';
 
 @NgModule({
   declarations: [
@@ -36,15 +42,19 @@ import { SettingsComponent } from './components/settings/settings.component';
     AboutUsComponent,
     HomeComponent,
     ProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    ArtistDetailComponent,
+    ArtistTracksComponent,
+    ArtistAlbumsComponent,
   ],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [AuthService, BeforeLoginService, AfterLoginService],
+  providers: [AuthService, TokenService, BeforeLoginService, AfterLoginService, ArtistdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

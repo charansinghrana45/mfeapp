@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
 
 
@@ -13,10 +14,11 @@ export class NavBarComponent implements OnInit {
   name: string;
   loggedIn: boolean;	
 
-  constructor(private auth: AuthService, private router: Router) { 
+  constructor(private auth: AuthService, private router: Router, private token: TokenService) { 
 
-  	this.name = "Charan Singh";
   	this.auth.authStatus.subscribe(value => this.loggedIn = value);
+
+    this.auth.authUserData.subscribe(value => this.name = value);
   }
 
   ngOnInit() {
@@ -26,9 +28,14 @@ export class NavBarComponent implements OnInit {
   logoutMe(event) {
  
   	event.preventDefault();
-  	this.auth.changeAuthStaus(false);
 
-    // console.log(this.loggedIn);
+    this.token.remove();
+
+    this.token.removeUserData();
+
+    this.auth.changeAuthUserData('');
+    
+  	this.auth.changeAuthStaus(false);
 
   	this.router.navigate(['/login']);
   }

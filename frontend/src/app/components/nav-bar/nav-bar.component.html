@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light float-right">
+<nav class="navbar navbar-expand-lg navbar-light bg-info float-right">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -8,9 +8,9 @@
 				<a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
 			</li>
 			<li class="nav-item" *ngIf="loggedIn">
-				<a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
+				<a class="nav-link" routerLink="/artists" routerLinkActive="active">Artists</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item" *ngIf="loggedIn">
 				<a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
 			</li>
 			<li class="nav-item">
@@ -18,7 +18,7 @@
 			</li>
 			<li class="nav-item dropdown" dropdown *ngIf="loggedIn">
 				<a class="nav-link dropdown-toggle" dropdownToggle id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" (click)="$event.preventDefault()">
-					Charan Singh
+					{{ name }}
 				</a>
 				<div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdownMenuLink">
 					<a class="dropdown-item" routerLink="/profile" routerLinkActive="active">Profile</a>

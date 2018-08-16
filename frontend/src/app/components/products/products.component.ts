@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ArtistdataService } from '../../services/artistdata.service';
 
 @Component({
   selector: 'app-products',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  artists : object[];
+  constructor(private artistdata: ArtistdataService) { }
 
   ngOnInit() {
+
+  	this.artistdata.getArtists().subscribe(response => this.handleResponse(response), 
+                                        (error) => this.handleError(error));
+  }
+
+  handleResponse(response) {
+  	this.artists = response.data;
+  }
+
+  handleError(error) {
+    console.log(error.error.error);
   }
 
 }

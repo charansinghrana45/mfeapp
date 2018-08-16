@@ -13,17 +13,27 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
+import { ArtistTracksComponent } from './components/artist-tracks/artist-tracks.component';
+import { ArtistAlbumsComponent } from './components/artist-albums/artist-albums.component';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [AfterLoginService] },
   { path: 'login', component: LoginComponent, canActivate: [BeforeLoginService] },
   { path: 'signup', component: SignupComponent, canActivate: [BeforeLoginService] },
-  { path: 'products', component: ProductsComponent, canActivate: [AfterLoginService] },
+  { path: 'artists', component: ProductsComponent, canActivate: [AfterLoginService] },
+  { path: 'artists/:artistId', component: ArtistDetailComponent,
+    children: [
+      { path: '', redirectTo: 'tracks', pathMatch: 'full' },
+      { path: 'tracks', component: ArtistTracksComponent },
+      { path: 'albums', component: ArtistAlbumsComponent },
+    ]
+  },
   { path: 'services', component: ServicesComponent, canActivate: [AfterLoginService] },
-  { path: 'about-us', component: AboutUsComponent, canActivate: [AfterLoginService] },
+  { path: 'about-us', component: AboutUsComponent, canActivate: [] },
   { path: 'profile', component: ProfileComponent, canActivate: [AfterLoginService] },
   { path: 'settings', component: SettingsComponent, canActivate: [AfterLoginService] },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

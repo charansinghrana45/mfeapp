@@ -1,3 +1,17 @@
-<p>
-  products works!
-</p>
+<section class="artists">
+<div class="text-center"><h4>Artists</h4></div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let artist of artists; let idx = index;">
+      <th scope="row">{{ idx+1 }}</th>
+      <td><a routerLink="/artists/{{artist.id}}">{{ artist.name }}</a></td>
+    </tr>
+  </tbody>
+</table>
+</section>
