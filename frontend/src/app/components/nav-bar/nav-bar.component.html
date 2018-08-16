@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light float-right">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav">
+			<li class="nav-item" *ngIf="loggedIn">
+				<a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+			</li>
+			<li class="nav-item" *ngIf="loggedIn">
+				<a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/about-us" routerLinkActive="active">About Us</a>
+			</li>
+			<li class="nav-item dropdown" dropdown *ngIf="loggedIn">
+				<a class="nav-link dropdown-toggle" dropdownToggle id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" (click)="$event.preventDefault()">
+					Charan Singh
+				</a>
+				<div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" routerLink="/profile" routerLinkActive="active">Profile</a>
+					<a class="dropdown-item" routerLink="/settings" routerLinkActive="active">Settings</a>
+					<a class="dropdown-item" routerLink="/logout" routerLinkActive="active" (click)="logoutMe($event)">Logout</a>
+				</div>
+			</li>
+			<li class="nav-item active" *ngIf="!loggedIn">
+				<a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+	
