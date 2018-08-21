@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment'
 
 import { TokenService } from './token.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 
@@ -21,7 +22,7 @@ export class AuthService {
   private loggedInUserData: BehaviorSubject<string> = new BehaviorSubject<string>(this.token.getUserData());
   authUserData = this.loggedInUserData.asObservable();
  
-  constructor(private http: HttpClient, private token: TokenService) { }
+  constructor(private http: HttpClient, private token: TokenService, private router: Router) { }
 
    changeAuthStaus(value: boolean) {
 
@@ -39,6 +40,19 @@ export class AuthService {
     let apiBaseUrl = environment.apiBaseUrl;
 
    	return this.http.post(apiBaseUrl+'/auth/login', data);
+   }
+
+   logout() {
+
+       this.token.remove();
+
+       this.token.removeUserData();
+
+       this.changeAuthUserData('');
+       
+       this.changeAuthStaus(false);
+
+       this.router.navigate(['/login']);
    }
 
 }

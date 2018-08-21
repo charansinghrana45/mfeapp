@@ -27,17 +27,8 @@ export class NavBarComponent implements OnInit {
 
   logoutMe(event) {
  
-  	event.preventDefault();
-
-    this.token.remove();
-
-    this.token.removeUserData();
-
-    this.auth.changeAuthUserData('');
-    
-  	this.auth.changeAuthStaus(false);
-
-  	this.router.navigate(['/login']);
+     event.preventDefault();
+     this.auth.logout();
   }
 
 }

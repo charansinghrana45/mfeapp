@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap';
 
 import { AuthService } from './services/auth.service';
 import { BeforeLoginService } from './services/before-login.service';
@@ -13,7 +15,6 @@ import { ArtistdataService } from './services/artistdata.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { BsDropdownModule } from 'ngx-bootstrap';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -53,6 +54,8 @@ import { ArtistAlbumsComponent } from './components/artist-albums/artist-albums.
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    PaginationModule.forRoot()
   ],
   providers: [AuthService, TokenService, BeforeLoginService, AfterLoginService, ArtistdataService],
   bootstrap: [AppComponent]

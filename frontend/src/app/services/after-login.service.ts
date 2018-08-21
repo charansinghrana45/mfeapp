@@ -25,6 +25,7 @@ export class AfterLoginService {
 
       // Navigate to the login page with extras
       this.router.navigateByUrl('/login');
+      return false;
    }
 
 }

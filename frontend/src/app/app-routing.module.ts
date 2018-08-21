@@ -26,8 +26,8 @@ const appRoutes: Routes = [
   { path: 'artists/:artistId', component: ArtistDetailComponent,
     children: [
       { path: '', redirectTo: 'tracks', pathMatch: 'full' },
-      { path: 'tracks', component: ArtistTracksComponent },
-      { path: 'albums', component: ArtistAlbumsComponent },
+      { path: 'tracks', component: ArtistTracksComponent, canActivate: [AfterLoginService] },
+      { path: 'albums', component: ArtistAlbumsComponent,canActivate: [AfterLoginService] },
     ]
   },
   { path: 'services', component: ServicesComponent, canActivate: [AfterLoginService] },

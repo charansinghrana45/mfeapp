@@ -15,8 +15,6 @@ export class TokenService {
 
   handleToken(token) {
 	this.set(token);
-
-	this.isValid();
   }
 
   set(token) {
