@@ -13,7 +13,7 @@ import { ArtistdataService } from '../../services/artistdata.service';
 export class ArtistDetailComponent implements OnInit {
 
   artistId: number;
-  artistInfo: object;
+  artistInfo: any;
 
   constructor(private route: ActivatedRoute, private artistData: ArtistdataService) { 
   	let params = this.route.params;

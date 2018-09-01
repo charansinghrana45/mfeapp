@@ -11,8 +11,8 @@ import { TokenService } from '../../services/token.service';
 })
 export class LoginComponent implements OnInit {
 
-  form: object = {};
-  errors: object= {};
+  form: any = {};
+  errors: any= {};
   
   constructor(private auth: AuthService, private router: Router, private token: TokenService) { }
 

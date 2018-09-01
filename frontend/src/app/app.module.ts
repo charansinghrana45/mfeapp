@@ -55,7 +55,7 @@ import { ArtistAlbumsComponent } from './components/artist-albums/artist-albums.
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
   ],
   providers: [AuthService, TokenService, BeforeLoginService, AfterLoginService, ArtistdataService],
   bootstrap: [AppComponent]
